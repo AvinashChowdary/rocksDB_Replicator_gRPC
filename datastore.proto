@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+message Request {
+    string data = 1;
+}
+
+message Response {
+    string data = 1;
+}
+
+message Delete {
+    string data = 1; 
+}
+
+message ReplicateResponse {
+    string key = 1;
+    string data = 2;
+    string type = 3;
+}
+
+message ReplicateRequest {  
+}
+
+service Replicator {
+   rpc put(Request) returns (Response) {}
+   rpc get(Request) returns (Response) {}
+   rpc delete(Delete) returns (Response) {}
+   rpc alive_connection(ReplicateRequest) returns (stream ReplicateResponse) {}
+}
